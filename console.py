@@ -4,8 +4,21 @@ This is a simple Python3 code snippet
 """
 
 
-def hello():
+import cmd
+
+
+class HbnbConsole(cmd.Cmd):
     """
-    Function that returns 'hello world'
+    This class handles the command line instance for our HBNB clone
     """
-    return "Hello World"
+    prompt = '(hbnb) '
+
+    def do_exit(self, line):
+        """
+        This function handles exit
+        """
+        return True
+
+
+if __name__ == "__main__":
+    HbnbConsole().cmdloop()

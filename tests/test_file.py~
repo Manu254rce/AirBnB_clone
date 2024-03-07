@@ -18,7 +18,6 @@ class TestConsole(unittest.TestCase):
         This function ensures that uuid from BaseModel is always a string
         """
         base_model_obj = base_model.BaseModel()
-        self.assertIsNotNone(base_model_obj.id)
         self.assertIsInstance(base_model_obj.id, str)
     def test_console(self):
         """
