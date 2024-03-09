@@ -7,6 +7,7 @@ This is a Python3 code that handles file storage
 import json
 from models.base_model import BaseModel
 
+
 class FileStorage:
     """
     This is a class that handles persistent file storage for our console,
@@ -28,7 +29,9 @@ class FileStorage:
         """
         if class_instance is None:
             return self.__objects
-        return {k: v for k, v in self.__objects.items() if isinstance(v, class_instance)}
+        return {
+            k: v for k, v in self.__objects.items() if isinstance(v, class_instance)
+            }
 
     def new(self, obj):
         """
