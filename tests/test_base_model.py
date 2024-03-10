@@ -55,7 +55,8 @@ class TestBaseModel(unittest.TestCase):
 
     def test_save(self):
         """
-        Function that ensures that the updated_at attribute has been saved succesfully
+        Function that ensures that the updated_at
+        attribute has been saved succesfully
         """
         old_updated_at = self.base_model_obj.updated_at
         self.base_model_obj.save()
@@ -65,7 +66,10 @@ class TestBaseModel(unittest.TestCase):
         """
         Function that tests the string representation of the BaseModel instance
         """
-        exp_str = f"[BaseModel] ({self.base_model_obj.id}) {self.base_model_obj.__dict__}"
+        exp_str = (
+            f"[BaseModel] ({self.base_model_obj.id}) "
+            f"{self.base_model_obj.__dict__}"
+        )
         self.assertEqual(str(self.base_model_obj), exp_str)
 
     def test_serialization(self):

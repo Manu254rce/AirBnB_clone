@@ -23,16 +23,14 @@ class FileStorage:
         self.__file_path = 'file.json'
         self.__objects = {}
 
-    def all(self, class_instance=None):
+    def all(self, class_instance):
         """
         Function that returns all dictionary objects
         """
-        if class_instance == None:
+        if class_instance is None:
             return self.__objects
-        else:
-            return {
-                k: v for k, v in self.__objects.items() if isinstance(v, class_instance)
-            }
+        return {k: v for k, v in self.__objects.items()
+                if isinstance(v, class_instance)}
 
     def new(self, obj):
         """
@@ -46,7 +44,8 @@ class FileStorage:
         Function that serializes objects into a json file
         """
         with open(self.__file_path, 'w') as file:
-            json.dump({k: v.to_dict() for k, v in self.__objects.items()}, file)
+            json.dump({k: v.to_dict()
+                       for k, v in self.__objects.items()}, file)
 
     def reload(self):
         """
@@ -62,4 +61,6 @@ class FileStorage:
                     cls = globals()[cls_name]
                     self.__objects[obj['id']] = cls(**obj)
         except FileNotFoundError:
+            pass
+        except json.JSONDecodeError:
             pass
