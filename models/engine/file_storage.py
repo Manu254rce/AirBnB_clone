@@ -6,6 +6,7 @@ This is a Python3 code that handles file storage
 
 import json
 from models.base_model import BaseModel
+from models.user import User
 
 
 class FileStorage:
@@ -52,6 +53,7 @@ class FileStorage:
         Function that deserializes the JSON file back
         to objects
         """
+        self.__objects = {}
         try:
             with open(self.__file_path, 'r') as file:
                 objs = json.load(file)

@@ -7,6 +7,7 @@ This is a simple Python3 code snippet
 import cmd
 import importlib
 from models.base_model import BaseModel
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -14,7 +15,7 @@ class HBNBCommand(cmd.Cmd):
     This class handles the command line instance for our HBNB clone
     """
     prompt = '(hbnb) '
-    classes = {'BaseModel': BaseModel}
+    classes = {'BaseModel': BaseModel, 'User': User}
 
     def do_EOF(self, line):
         """
