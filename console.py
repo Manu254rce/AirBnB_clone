@@ -98,17 +98,18 @@ class HBNBCommand(cmd.Cmd):
         from models import storage
         class_instance = None
         if line:
-            try:
-                class_instance = eval(line)
-            except KeyError:
+            class_name = line.strip()
+            class_instance = self.classes.get(class_name)
+            if class_instance is None:
                 print("** class doesn't exist **")
                 return
         else:
-            obj = storage.all(class_instance)
-        if len(obj) == 0:
+            class_instance = None
+        obj_dict = storage.all(class_instance)
+        if not obj_dict:
             print("[]")
-        for ob in obj.values():
-            print(ob)
+        for obj in obj_dict.values():
+            print(obj)
 
     def do_update(self, line):
         """

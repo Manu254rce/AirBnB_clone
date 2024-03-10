@@ -96,22 +96,25 @@ class HBNBCommand(cmd.Cmd):
         Function that prints all string representations of the instance
         """
         from models import storage
-        class_instance = None
-        if line:
-            class_name = line.strip()
-            if class_name in self.classes:
-                class_instance = self.classes[class_name]
-            else:
-                print("** class doesn't exist **")
-                return
-        else:
-            class_instance = None
-        obj = storage.all(class_instance)
-        if not obj:
+        # Split the input line to get the class name and method
+        parts = line.split('.')
+        if len(parts) != 2 or parts[1] != 'all':
+            print("*** Unknown syntax:", line)
+            return
+
+        class_name = parts[0]
+        if class_name not in self.classes:
+            print("** class doesn't exist **")
+            return
+
+        # Dynamically call the 'all' method on the specified class
+        class_instance = self.classes[class_name]
+        obj_dict = storage.all(class_instance)
+        if not obj_dict:
             print("[]")
         else:
-            for ob in obj.items():
-                print(ob)
+            for obj in obj_dict.values():
+                print(obj)
 
     def do_update(self, line):
         """
