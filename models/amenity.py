@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 """
-This is a Python3 code, that creates a class for State
+This is a Python3 code that defines a class for an amenity
 """
 
 
 from models.base_model import BaseModel
 
 
-class State(BaseModel):
+class Amenity(BaseModel):
     """
-    This class defines an instance for the state
-    and inherits from BaseModel
+    This class defines an amenity instance for our
+    HBNB console
     """
     def __init__(self, *args, **kwargs):
         """

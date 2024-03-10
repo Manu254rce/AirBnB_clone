@@ -1,20 +1,21 @@
 #!/usr/bin/python3
 """
-This is a Python3 code, that creates a class for State
+This is a Python3 code that defines a City class
 """
 
 
 from models.base_model import BaseModel
 
 
-class State(BaseModel):
+class City(BaseModel):
     """
-    This class defines an instance for the state
-    and inherits from BaseModel
+    Class that defines an instance for a city
+    a user will pick
     """
     def __init__(self, *args, **kwargs):
         """
         Initialization constructor
         """
         super().__init__(*args, **kwargs)
+        self.state_id = kwargs.get('state_id', "")
         self.name = kwargs.get('name', "")
