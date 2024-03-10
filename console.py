@@ -72,12 +72,40 @@ class HBNBCommand(cmd.Cmd):
         if len(args) == 1:
             print("** instance id missing **")
             return
-        obj = storage.all(class_instance)
+        obj = storage.all()
         key = f"{args[0], args[1]}"
         if key in obj:
             print(obj[key])
         else:
             print("** no instance found **")
+
+    def do_all(self, line):
+        """
+        Function that prints all string representations of the instance
+        """
+        from models import storage
+        if line:
+            try:
+                class_instance = eval(line)
+            except KeyError:
+                print("** class doesn't exist **")
+                return
+        else:
+            obj = storage.all()
+        if len(obj) == 0:
+            print("[]")
+        for ob in obj.values():
+            print(ob)
+
+    def do_update(self):
+        pass
+
+    def do_destroy(self):
+        """
+        Function that destroys or deletes an instance based on
+        a cli argument from the shell
+        """
+
 
 
 if __name__ == "__main__":

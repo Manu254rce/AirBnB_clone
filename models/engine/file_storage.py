@@ -27,10 +27,11 @@ class FileStorage:
         """
         Function that returns all dictionary objects
         """
-        if class_instance is None:
+        if class_instance == None:
             return self.__objects
-        return {
-            k: v for k, v in self.__objects.items() if isinstance(v, class_instance)
+        else:
+            return {
+                k: v for k, v in self.__objects.items() if isinstance(v, class_instance)
             }
 
     def new(self, obj):
